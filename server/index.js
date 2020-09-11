@@ -26,13 +26,13 @@ const allProducts = `
          "image",
          "shortDescription"
     from "products"
-`;
+`; // using sql to get the products
 
 app.get('/api/products', (req, res, next) => {
   db.query(allProducts)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
-});
+}); // second get endpoint
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));

@@ -21,13 +21,13 @@ app.get('/api/health-check', (req, res, next) => {
 
 app.get('/api/products', (req, res, next) => {
   const allProducts = `
-  select "productId",
-         "name",
-         "price",
-         "image"
-         "shortDescription"
-    from "products"
-`;
+    select "productId",
+          "name",
+          "price",
+          "image"
+          "shortDescription"
+      from "products"
+  `;
   db.query(allProducts)
     .then(result => res.json(result.rows))
     .catch(err => next(err));

@@ -1,11 +1,16 @@
 import React from 'react';
 
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // enter code here
-    };
+  render() {
+    return <>
+      <header>
+        <nav className="navbar navbar-dark bg-dark">
+          <div className="col-12">
+            <i className="fas fa-dollar-sign"><h5>Wicked Sales</h5></i>
+          </div>
+        </nav>
+      </header>
+    </>;
   }
 }
 

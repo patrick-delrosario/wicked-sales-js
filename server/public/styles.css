@@ -1,0 +1,31 @@
+nav {
+  color: white;
+}
+
+h5 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+  display: inline;
+  color: white;
+  padding-left: 5px;
+}
+
+img {
+  width: 18rem;
+  object-fit: contain;
+}
+
+.card-img-top {
+  height: 18rem;
+}
+
+.row {
+  padding-top: 15px;
+}
+
+.card-deck {
+  margin-bottom: 10px;
+}
+
+.col-4 {
+  margin-bottom: 15px;
+}

@@ -1,3 +1,7 @@
+body {
+  background-color: rgba(247, 244, 244, 0.945);
+}
+
 nav {
   color: white;
 }
@@ -9,6 +13,10 @@ h5 {
   padding-left: 5px;
 }
 
+.container {
+  background-color: white;
+}
+
 img {
   width: 18rem;
   object-fit: contain;
@@ -18,14 +26,43 @@ img {
   height: 18rem;
 }
 
-.row {
-  padding-top: 15px;
+.card {
+  width: 18rem;
+  box-shadow: 3px 3px 10px #888888
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.03)
+}
+
+.hover {
+  color: rgb(108,117,167);
+}
+
+.hover:hover {
+  cursor: pointer;
+  color: rgb(52,58,64);
 }
 
 .card-deck {
-  margin-bottom: 10px;
+  margin-bottom: 0px 10px;
 }
 
 .col-4 {
   margin-bottom: 15px;
+}
+
+.fa-book-open {
+  padding-top: 4px;
+  padding-left: 7px;
+}
+
+.center  {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.detailbox {
+  margin: 25px;
 }

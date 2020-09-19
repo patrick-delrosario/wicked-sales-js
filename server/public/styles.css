@@ -36,6 +36,10 @@ img {
   transform: scale(1.03)
 }
 
+.row {
+  padding-top: 15px;
+}
+
 .hover {
   color: rgb(108,117,167);
 }

@@ -16,22 +16,23 @@ class ProductList extends React.Component {
   getProducts() {
     fetch('/api/products')
       .then(result => result.json(result.rows))
-      .then(result => {
-        this.setState({ products: result });
-      })
+      .then(result => { this.setState({ products: result }); })
       .catch(error => {
         console.error(error);
       });
   }
 
   render() {
+    const map = this.state.products.map(product =>
+      <ProductListItem
+        key={product.productId}
+        product={product}
+        setView={this.props.setView} />
+    );
     return (
       <div className="container">
         <div className="row">
-          {this.state.products.map(product => {
-            return <ProductListItem key={product.productId} data={product} />;
-          })
-          }
+          {map}
         </div>
       </div>
     );

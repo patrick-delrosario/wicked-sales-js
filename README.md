@@ -16,4 +16,5 @@ A full stack Node.js and React shopping cart app.
 
 ### Features
 - User can view items from a product list
-- User can view product details from a product list 
+- User can view product details from a product list
+- User can add items to cart

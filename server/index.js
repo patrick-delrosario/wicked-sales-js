@@ -33,6 +33,34 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 }); // second get endpoint
 
+app.get('/api/products/:productId', (req, res, next) => {
+  const productDetails = `
+      select *
+      from "products"
+      where "productId" = $1
+  `;
+  const { productId } = req.params;
+  const params = [productId];
+
+  if (params.productId <= 0) {
+    return res.status(400).json({
+      error: 'ProductId entered is invalid.'
+    });
+  } else {
+    db.query(productDetails, params)
+      .then(result => {
+        if (!result.rows[0]) {
+          next(new ClientError(`Cannot find product with productId ${productId}`, 500));
+        } else {
+          res.status(200).json(result.rows[0]);
+        }
+      })
+      .catch(err => {
+        next(err);
+      });
+  }
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });

@@ -31,7 +31,7 @@ app.get('/api/products', (req, res, next) => {
   db.query(allProducts)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
-}); // second get endpoint
+});
 
 app.get('/api/products/:productId', (req, res, next) => {
   const productDetails = `
@@ -66,11 +66,6 @@ app.get('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/cart', function (req, res) {
-  const addCart = `
-      select *
-      from "products"
-      where "productId" = $1
-  `;
   const { productId } = req.params;
   const body = [req.body.productId];
 
@@ -80,9 +75,15 @@ app.post('/api/cart', function (req, res) {
     });
   }
 
+  const addCart = `
+    select price
+    from "products"
+    where "productId" = $1
+  `;
+
   db.query(addCart, body)
-    .then(result => {
-      if (!result.rows[0]) {
+    .then(response => {
+      if (!response.rows[0]) {
         throw new ClientError(`Product ID ${productId} is invalid`, 400);
       } else {
         const inputCart = `
@@ -91,16 +92,19 @@ app.post('/api/cart', function (req, res) {
           returning "cartId"
         `;
         return db.query(inputCart)
-          .then(result => ({
-            cartId: result.rows[0].cartId,
-            price: result.rows[0].price
-          })
-          );
+          .then(data => ({
+            cartId: data.rows[0].cartId,
+            price: data.rows[0].price
+          }));
       }
     })
+    .catch(err => {
+      console.error(err);
+    });
+  /*
     .then()
     .then()
-    .catch();
+    .catch(); */
 });
 
 app.use('/api', (req, res, next) => {
